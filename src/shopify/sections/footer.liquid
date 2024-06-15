@@ -1,0 +1,52 @@
+<div class="footer__container">
+  <div class="footer__brand-details">
+    <h5 class="footer__brand-headline p-md bold">
+      {{ settings.brand_headline }}
+    </h5>
+    <p class="footer__brand-description p-md">
+      {{ settings.brand_description }}
+    </p>
+    <div class="footer__brand-logo">
+      {% if settings.brand_image != blank %}
+        {% render 'render-responsive-image' with imageData: settings.brand_image %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+  </div>
+  {% for link in linklists.footer.links limit: 2 -%}
+    <div class="footer__nav">
+      <a href="{{ link.url }}" class="footer__nav-link">
+        {{ link.title }}
+      </a>
+      {% for sublink in link.links -%}
+        <a href="{{ sublink.url }}" class="footer__nav-sublink">
+          {{ sublink.title }}
+        </a>
+      {%- endfor %}
+    </div>
+  {%- endfor %}
+  <div class="footer__newsletters">
+    <h5 class="footer__newsletter-headline p-md bold">Newsletter</h5>
+    <p class="footer__newsletter-description p-md">Sign up for our newsletter to get the latest news.</p>
+    <form method="post" class="footer__newsletter-form">
+      <input type="email" name="email" placeholder="Enter email" class="footer__newsletters-input">
+      <button type="submit" class="footer__newsletter-submit">{% render 'arrow-right' %}</button>
+    </form>
+    <div class="footer__socials">
+      {% render 'social-icons' %}
+    </div>
+  </div>
+</div>
+<div class="copyright">
+  <p class="copyright__text p-sm">{{ shop.name }} © 2000-2024, All Rights Reserved</p>
+  {% render 'payments' %}
+</div>
+
+{% schema %}
+{
+  "name": "footer",
+  "tag": "footer",
+  "class": "footer"
+}
+{% endschema %}

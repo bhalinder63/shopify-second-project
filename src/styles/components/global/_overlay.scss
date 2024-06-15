@@ -1,0 +1,39 @@
+.ov {
+  @include float-fixed(fixed, 0, 0, null, null, 100%, 100%);
+
+  background-color: var(--ov-background, #1a1a1a);
+  opacity: var(--ov-opacity, 0.8);
+  z-index: 101;
+  animation: ov-come-in var(--ov-speed, 0.2s);
+
+  &.ov--hide {
+    opacity: 0;
+    animation: ov-go-out var(--ov-speed, 0.2s);
+  }
+
+  &.ov--hidden {
+    display: none;
+  }
+
+  .m__nav--open & {
+    z-index: 1;
+  }
+}
+
+@keyframes ov-come-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: var(--ov-opacity, 0.5);
+  }
+}
+
+@keyframes ov-go-out {
+  from {
+    opacity: var(--ov-opacity, 0.5);
+  }
+  to {
+    opacity: 0;
+  }
+}

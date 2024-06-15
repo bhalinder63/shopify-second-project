@@ -1,0 +1,37 @@
+{% for photo in section.blocks %}
+  <div class="photos-slice__photo">
+    {% if photo.settings.image != blank %}
+      {% render 'render-responsive-image' with imageData: photo.settings.image %}
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+  </div>
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Photos Slice",
+  "class": "photos-slice",
+  "tag": "section",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "photo",
+      "name": "Photo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Photos Slice"
+    }
+  ]
+}
+{% endschema %}

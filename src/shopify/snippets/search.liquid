@@ -1,0 +1,15 @@
+<div class="search js-search-modal">
+    <div class="search__wrapper">
+        <div class="search__content">
+            <form class="search__form" action="/search">
+                <input type="text" placeholder="Mmmm...coffee" class="search__input" name="q" value="{{ search.terms | escape }}"  />
+                <button type="submit" class="search__button">
+                    {% render 'icons', icon: 'search' %}
+                </button>
+            </form>  
+            <a href="#" class="search__close js-search-close">
+                {% render 'icons', icon: 'close' %}
+            </a>  
+        </div>
+    </div>    
+</div>

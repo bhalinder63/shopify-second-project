@@ -1,0 +1,103 @@
+<section class="showcase showcase--align-{%- if section.settings.alignment == 'right' -%}right{%- else -%}left{%- endif -%}">
+  <div class="showcase__primary">
+    <div class="showcase__primary-image">
+      {% if section.settings.primary_image != blank %}
+        {% render 'render-responsive-image' with imageData: section.settings.primary_image %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      <p class="showcase__caption p-md bold">{{ section.settings.primary_caption }}</p>
+    </div>
+  </div>
+  <div class="showcase__secondary">
+    <div class="showcase__text-container">
+      <h3 class="showcase__title">{{ section.settings.title }}</h3>
+      <p class="showcase__description p-md">{{ section.settings.description }}</p>
+      {% if section.settings.button_text != blank %}
+        {% render 'button',
+          url: section.settings.button_link,
+          content: section.settings.button_text,
+          class: 'showcase__button'
+        %}
+      {% endif %}
+    </div>
+    <div class="showcase__secondary-image">
+      {% if section.settings.secondary_image != blank %}
+        {% render 'render-responsive-image' with imageData: section.settings.secondary_image %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      <p class="showcase__caption p-md bold">{{ section.settings.secondary_caption }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title"
+    },
+    {
+      "type": "text",
+      "label": "Description",
+      "id": "description"
+    },
+    {
+      "type": "image_picker",
+      "label": "Primary Image",
+      "id": "primary_image"
+    },
+    {
+      "type": "text",
+      "label": "Primary Image Caption",
+      "id": "primary_caption"
+    },
+    {
+      "type": "image_picker",
+      "label": "Secondary Image",
+      "id": "secondary_image"
+    },
+    {
+      "type": "text",
+      "label": "Secondary Image Caption",
+      "id": "secondary_caption"
+    },
+    {
+      "type": "select",
+      "label": "Alignment",
+      "id": "alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "url",
+      "label": "Button Link",
+      "id": "button_link"
+    },
+    {
+      "type": "text",
+      "label": "Button Text",
+      "id": "button_text"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Showcase"
+    }
+  ]
+}
+{% endschema %}

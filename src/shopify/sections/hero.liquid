@@ -1,0 +1,71 @@
+<div class="hero__container">
+  <span class="hero__accent-text p-xs">{{ section.settings.accentText }}</span>
+  <h1 class="hero__title">{{ section.settings.title }}</h1>
+  <p class="hero__subtitle">{{ section.settings.subtitle }}</p>
+
+  {% capture content %}
+  Shop {{ section.settings.collection.title }}
+  {% endcapture %}
+
+  {% render 'button', url: section.settings.collection.url, content: content, class: 'hero__button' %}
+</div>
+<div class="swiper-container js-hero-carousel">
+  <div class="swiper-wrapper">
+    {% for slide in section.blocks %}
+      <div class="swiper-slide">
+        {% if slide.settings.image != blank %}
+          {% render 'render-responsive-image' with imageData: slide.settings.image %}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "accentText",
+      "label": "Accent Text",
+      "default": "Swimwear"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Maximum impact"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Shop our collection of glamorous swimsuits and bikinis."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,158 @@
+input[type='email'],
+input[type='password'],
+input[type='tel'],
+input[type='text'] {
+  @include text-style(16px, null, 20px, 400);
+
+  color: color('primary');
+  display: block;
+  appearance: none;
+  border-radius: 0;
+  border-bottom: 1px solid color('grey-90');
+  padding: 14px 0;
+  width: 100%;
+  background-color: transparent;
+
+  &::placeholder {
+    color: color('grey-60');
+  }
+}
+
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='tel']:focus,
+input[type='text']:focus {
+  outline: none;
+  border-color: color('grey-90');
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover {
+  background: none !important;
+  box-shadow: 0 0 0 50px #fff inset !important;
+  -webkit-text-fill-color: #9e9e9e !important;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.errors {
+  margin-bottom: 20px;
+  text-align: left;
+  ul {
+    padding-left: 0;
+    list-style: none;
+
+    li {
+      font-size: 12px;
+      color: color('red');
+      margin-bottom: 10px;
+      line-height: 1.4;
+
+      &::before {
+        content: '!';
+        display: inline-block;
+        width: 1rem;
+        min-width: 1rem;
+        height: 1rem;
+        line-height: 1rem;
+        background: #c2a07c;
+        text-align: center;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 0.75rem;
+        vertical-align: middle;
+        margin-right: 0.4rem;
+        margin-top: rem(4px);
+      }
+    }
+
+    a {
+      padding-bottom: 2px;
+      color: color('red');
+    }
+  }
+}
+
+.label-hidden {
+  display: none;
+}
+
+.form-holder {
+  max-width: 40rem;
+  margin: auto;
+}
+
+.account-form {
+  margin: 96px 0 128px;
+}
+
+.account-form h1 {
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+.account-form p {
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+.account-form label {
+  @include use-text-style('p-md');
+  margin: 0 0 8px;
+  text-align: left;
+  display: block;
+}
+
+.account-form input,
+.account-form select {
+  padding: 16px 20px;
+  margin: 8px 0 24px;
+  border: 1px solid color('gray-300');
+  border-radius: 6px;
+  width: 100%;
+  @include use-text-style('p-sm');
+
+  &::placeholder {
+    color: color('gray-400');
+  }
+}
+
+.account-form input[type='checkbox'] {
+  margin: 0 8px 8px 0;
+  padding: 0;
+  border: none;
+  width: 14px;
+}
+
+.account-form [type='submit'] {
+  width: 100%;
+  background-color: color('gray-800');
+  color: color('white');
+  @include use-text-style('p-md');
+  @include use-text-style('bold');
+}
+
+.account-form__footer {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  @include use-text-style('p-md');
+
+  a {
+    &:link,
+    &:visited {
+      color: color('gray-600');
+      @include use-text-style('bold');
+    }
+
+    padding: 8px;
+  }
+}
+
+.account-form__footer .forgot-password {
+  border-left: 1px solid color('gray-300');
+}

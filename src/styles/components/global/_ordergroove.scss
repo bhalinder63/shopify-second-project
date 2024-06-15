@@ -1,0 +1,25 @@
+// Ordergroove styles
+
+.grid {
+  max-width: size('page-tablet-max');
+  margin: 32px auto 84px;
+  padding: 0 60px;
+}
+
+#send-update-payment-email-button {
+  @include use-text-style('p-md');
+
+  border: 1px solid color('gray-800');
+  font-weight: 400;
+
+  padding: 12px;
+  margin: 4px 0;
+}
+
+.og-smi-section {
+  @include use-text-style('p-sm');
+}
+
+.og-manage-subscriptions {
+  border: 1px solid color('gray-800');
+}

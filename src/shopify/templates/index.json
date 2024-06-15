@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero"
+    },
+    "collections-list": {
+      "type": "collections-slider"
+    },
+    "photo-cards": {
+      "type": "photo-cards"
+    },
+    "quote": {
+      "type": "quote"
+    }
+  },
+  "order": ["hero", "collections-slider", "photo-cards", "quote"]
+}

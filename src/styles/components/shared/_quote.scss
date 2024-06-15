@@ -1,0 +1,33 @@
+.quote {
+  @include flex(column, center, center, null);
+  @include margin(100px, auto, 100px, auto);
+
+  max-width: 790px;
+  width: 100%;
+}
+
+.quote__image {
+  @include margin(0, 0, 22px, 0);
+
+  max-height: 150px;
+  width: 250px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.quote__subtitle {
+  @include text-style(null, 1.3px, 17.76px, null);
+  @include margin(0, 0, 5px, 0);
+
+  text-transform: uppercase;
+}
+
+.quote__text {
+  @include padding(0, 20px, 0, 20px);
+  @include margin(0, 0, 0, 0);
+
+  line-height: 41.11px;
+  text-align: center;
+}

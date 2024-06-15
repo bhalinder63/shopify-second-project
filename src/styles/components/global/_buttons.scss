@@ -1,0 +1,62 @@
+.btn,
+button,
+input[type='button'] {
+  @include use-text-style('buttons');
+  @include text-style(14px, null, 16px, 700);
+
+  user-select: none;
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  border: 1px solid transparent;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 7px 16px;
+
+  @include above('tablet-large') {
+    @include text-style(18px, null, 20px, 700);
+  }
+}
+
+.btn-primary {
+  color: white;
+  background-color: color('button');
+
+  &:hover {
+    color: white;
+    background-color: color('button-hover');
+  }
+}
+
+.btn-secondary {
+  color: white;
+  background-color: color('button-secondary');
+
+  &:hover {
+    color: white;
+    background-color: color('button-secondary-hover');
+  }
+}
+
+.btn-default {
+  color: white;
+  background-color: color('grey');
+
+  &:hover {
+    color: white;
+  }
+}
+
+.btn-medium {
+  padding: 1.6rem 2.4rem;
+}
+
+.btn-full {
+  width: 100%;
+}

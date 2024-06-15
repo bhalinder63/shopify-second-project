@@ -1,0 +1,37 @@
+/*
+ * Import style components for the current template.
+ *
+ * Write your own styles after imports.
+ *
+ * Design tokens are required and encapsulated for each template.
+ * Import it from the design-tokens folder.
+ */
+
+// Design tokens
+@import './src/design-tokens/index';
+
+.form-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  a,
+  span {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.group-row {
+  display: flex;
+  justify-content: space-between;
+  .btn {
+    width: 45%;
+  }
+}

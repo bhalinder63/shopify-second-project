@@ -1,0 +1,76 @@
+ 
+    <div class="mobileMenu__content">
+        <ul class="mobileMenu__list">
+            {% for link in linklists[menu.main-menu].links %}
+            <li class="mobileMenu__listItem {% if link.links != blank %}mobileMenu__linkArrow{% endif %} ">
+                <a href="{{ link.url }}" class="mobileMenu__linkList {% if link.links != blank %}js-mobile-subnav{% endif %}">
+                    {{ link.title }}
+                    {% if link.links != blank %}{% render 'icons', icon: 'arrow-next' %}{% endif %}
+                </a>  
+                {% if link.links != blank %}
+                    <div class="mobileMenu mobileMenu__level2">
+                        <a class="mobileMenu__heading js-mobile-subnav-close">{% render 'icons', icon: 'arrow-back' %}{{mainTitle}}</a>
+                        <a href="#" class="mobileMenu__close js-mobile-nav-close">
+                            {% render 'icons', icon: 'close' %}
+                        </a> 
+                        <div class="mobileMenu__headerTitle">{{ link.title }}</div>   
+                        <div class="mobileMenu__content">
+                            <ul class="mobileMenu__list">
+                                {%- for sub_link in link.links -%}
+                                    <li class="mobileMenu__listItem">
+                                        {% assign linkdata = sub_link.title | split: "| " %}
+                                        <a class="mobileMenu__linkList" href='{{ sub_link.url }}'>
+                                            {{ linkdata.first }}
+                                            {% if linkdata[2] != blank %}
+                                                <span class="megaMenu__mostPopular">{{ linkdata[2] }}</span>
+                                            {% endif %}
+                                            {% if linkdata[1] != blank %}
+                                                <p class="mobileMenu__navText">{{ linkdata[1] }}</p>
+                                            {% endif %}
+                                            
+                                        </a> 
+                                    </li>
+                                {%- endfor -%}
+                            </ul>
+                        </div>
+                    </div> 
+                {% endif %}        
+            </li>
+            {% endfor %} 
+            {% for link in linklists[menu.left-menu].links %}
+            <li class="mobileMenu__listItem {% if link.links != blank %}mobileMenu__linkArrow{% endif %} ">
+                <a href="{{ link.url }}" class="mobileMenu__linkList {% if link.links != blank %}js-mobile-subnav{% endif %}">
+                    {{ link.title }}
+                    {% if link.links != blank %}{% render 'icons', icon: 'arrow-next' %}{% endif %}
+                </a> 
+                {% if link.links != blank %}
+                    <div class="mobileMenu mobileMenu__level2">
+                        <a class="mobileMenu__heading js-mobile-subnav-close">{% render 'icons', icon: 'arrow-back' %}{{mainTitle}}</a>
+                        <a href="#" class="mobileMenu__close js-mobile-nav-close">
+                            {% render 'icons', icon: 'close' %}
+                        </a>
+                        <div class="mobileMenu__headerTitle">{{ link.title }}</div>
+                        <div class="mobileMenu__content">
+                            <ul class="mobileMenu__list">
+                                {%- for sub_link in link.links -%}
+                                    <li class="mobileMenu__listItem">
+                                        {% assign linkdata = sub_link.title | split: "| " %}
+                                        <a class="mobileMenu__linkList" href='{{ sub_link.url }}'>
+                                            {{ linkdata.first }}
+                                            {% if linkdata[2] != blank %}
+                                                <span class="megaMenu__mostPopular">{{ linkdata[2] }}</span>
+                                            {% endif %}
+                                            {% if linkdata[1] != blank %}
+                                                <p class="mobileMenu__navText">{{ linkdata[1] }}</p>
+                                            {% endif %}
+                                        </a> 
+                                    </li>
+                                {%- endfor -%}
+                            </ul>
+                        </div>
+                    </div> 
+                {% endif %}      
+            </li>
+            {% endfor %}    
+        </ul>    
+    </div>    

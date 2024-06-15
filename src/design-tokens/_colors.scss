@@ -1,0 +1,71 @@
+// Link to source
+/// @link https://www.oddbird.net/accoutrement/docs/color.html
+
+// *** Color palette *** //
+
+$primary-colors: (
+  'white': #fff,
+  'mila': #ebe4df,
+  'beaver': #b79b87,
+);
+$gray: (
+  'gray-100': #f6f6f6,
+  'gray-200': #dadada,
+  'gray-300': #bbb,
+  'gray-400': #767676,
+  'gray-500': #6d6d6d,
+  'gray-600': #525252,
+  'gray-700': #3d3d3d,
+  'gray-800': #212121,
+);
+$success: (
+  'success-100': #ddf8e8,
+  'success-200': #abedc6,
+  'success-300': #77e1a5,
+  'success-400': #45d883,
+  'success-500': #27b965,
+  'success-600': #1f9752,
+  'success-700': #19743f,
+  'success-800': #0e4324,
+);
+$warning: (
+  'warning-100': #f9eddc,
+  'warning-200': #f0d1a8,
+  'warning-300': #eabe85,
+  'warning-400': #e4ac63,
+  'warning-500': #d98e2b,
+  'warning-600': #ad7020,
+  'warning-700': #794e16,
+  'warning-800': #442d0b,
+);
+$error: (
+  'error-100': #f8e2dd,
+  'error-200': #edb7aa,
+  'error-300': #e79a88,
+  'error-400': #dc6e57,
+  'error-500': #ca462a,
+  'error-600': #99351f,
+  'error-700': #662415,
+  'error-800': #44180e,
+);
+$overlay: (
+  'overlay-a500': #0003,
+  'overlay-a300': #0000004d,
+  'overlay-a800': #000c,
+);
+
+// Merge everything into the main $colors map…
+@include add-colors(
+  $primary-colors,
+  $gray,
+  $success,
+  $warning,
+  $error,
+  $overlay
+);
+
+// Example of usage
+// .example {
+//   color: color('grey');
+//   background-color: color('light-grey');
+// }

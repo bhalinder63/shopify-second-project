@@ -1,0 +1,10 @@
+
+<a href="#" class="header__icon header__iconSearch js-search-icon">
+    {% render 'icons', icon: 'search' %}
+</a>
+<a href="#" class="header__icon header__iconAccount {% if customer %}js-account-menu-icon{% else %}js-account-icon{% endif %}">
+    {% render 'icons', icon: 'account' %}
+</a>
+<a href="#" class="header__icon header__iconCart" onclick="window.openCart()">
+    {% render 'icons', icon: 'cart-icon' %}
+</a>

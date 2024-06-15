@@ -1,0 +1,14 @@
+
+{% case media.media_type %}
+        {% when 'image' %}
+            {% if class %}
+                <div class="swiper-slide product__slideThumb">
+                    {% render 'responsive-image' with image:  media, alt: product.featured_image.alt, wrapper_class:"product__imageThumbWrap", image_class:"product__imageThumb"  , max_width: 900, max_height: 767 %}
+                </div>
+                {% else %}
+                <div class="swiper-slide product__slideMain">
+                    {% render 'responsive-image' with image:  media, alt: product.featured_image.alt, wrapper_class:"product__imageMainWrap", image_class:"product__imageMain"  , max_width: 900, max_height: 767 %}
+                </div>  
+            {% endif %}
+       
+{% endcase %}

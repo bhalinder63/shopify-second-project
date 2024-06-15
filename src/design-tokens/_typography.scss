@@ -1,0 +1,158 @@
+/// @access private
+/// @link https://www.oddbird.net/accoutrement/docs/type.html
+
+/// Defined fonts
+$fonts: (
+  'sans': (
+    'name': 'Avenir Next',
+    'formats': 'woff2',
+    'stack': (
+      'Arial',
+      sans-serif,
+    ),
+    'normal': 'AvenirNextCyr-Regular',
+    'italic': 'AvenirNextCyr-Italic',
+    '300': 'AvenirNextCyr-Light',
+    '300 italic': 'AvenirNextCyr-LightItalic',
+    '400': 'AvenirNextCyr-Regular',
+    '400 italic': 'AvenirNextCyr-Italic',
+    '500': 'AvenirNextCyr-Medium',
+    '500 italic': 'AvenirNextCyr-MediumItalic',
+    '600': 'AvenirNextCyr-Demi',
+    '600 italic': 'AvenirNextCyr-DemiItalic',
+    '700': 'AvenirNextCyr-Bold',
+    '700 italic': 'AvenirNextCyr-BoldItalic',
+  ),
+  'serif': (
+    'name': 'Big Caslon',
+    'formats': 'woff2',
+    'stack': (
+      'Times New Roman',
+      serif,
+    ),
+    'normal': 'BigCaslonFB-Regular',
+    'italic': 'BigCaslonFB-Italic',
+    '500': 'BigCaslonFB-Regular',
+    '500 italic': 'BigCaslonFB-Italic',
+    '700': 'BigCaslonFB-Bold',
+    '700 italic': 'BigCaslonFB-BoldItalic',
+  ),
+  'primary': '#sans',
+);
+
+// Import all local fonts
+@include import-webfonts;
+
+$typography: (
+  'body': (
+    'font': '#primary',
+    'size': size('text'),
+    'height': 1,
+    'space': 0.5px,
+  ),
+  'heading': (
+    'font': 'serif',
+  ),
+  'heading-1': (
+    'size': size('h1'),
+  ),
+  'heading-2': (
+    'size': size('h2'),
+  ),
+  'heading-3': (
+    'size': size('h3'),
+  ),
+  'heading-4': (
+    'size': size('h4'),
+  ),
+  'paragraph': (
+    'size': size('text'),
+    'height': 1.5,
+  ),
+  'buttons': (
+    'size': size('text'),
+    'height': 1.5,
+    'weight': 600,
+  ),
+  'button-primary': (),
+  'button-secondary': (),
+  'navigation': (
+    'size': 12px,
+    'weight': 700,
+    'space': 1px,
+  ),
+  'heading-2xl': (
+    'size': 60px,
+    'weight': 500,
+  ),
+  'heading-xl': (
+    'size': 34px,
+    'weight': 500,
+  ),
+  'heading-lg': (
+    'size': 27px,
+    'weight': 500,
+  ),
+  'heading-md': (
+    'size': 21px,
+    'weight': 500,
+  ),
+  'p': (
+    'size': 22px,
+    'weight': 400,
+    'font': 'sans',
+  ),
+  'p-lg': (
+    'size': 18px,
+    'weight': 400,
+    'font': 'sans',
+  ),
+  'p-md': (
+    'size': 15px,
+    'weight': 400,
+    'font': 'sans',
+  ),
+  'p-sm': (
+    'size': 14px,
+    'weight': 400,
+    'font': 'sans',
+  ),
+  'p-xs': (
+    'size': 13px,
+    'weight': 400,
+    'font': 'sans',
+  ),
+  'semibold': (
+    'weight': 500,
+  ),
+  'bold': (
+    'weight': 700,
+  ),
+);
+
+/// Set text style.
+/// @param {string} $token - One of keys of $typography map above.
+
+@mixin use-text-style($token: 'body') {
+  $type: get-token($typography, $token);
+
+  @if get-token($type, 'font') != 'font' {
+    font-family: font-family(get-token($type, 'font'));
+  }
+
+  @if get-token($type, 'size') != 'size' {
+    font-size: get-token($type, 'size');
+  }
+
+  @if get-token($type, 'weight') != 'weight' {
+    font-weight: get-token($type, 'weight');
+  }
+
+  @if get-token($type, 'height') != 'height' {
+    line-height: get-token($type, 'height');
+  }
+
+  @if get-token($type, 'spacing') != 'spacing' {
+    letter-spacing: get-token($type, 'spacing') * 1rem / 10;
+  }
+}

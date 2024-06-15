@@ -1,0 +1,143 @@
+.megaMenu {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  min-height: 476px;
+  background-color: #fff;
+  z-index: -1;
+  transform: translateY(-600px);
+  transition:
+    transform ease-in 0.2s,
+    opacity ease-in 0.2s,
+    visibility ease-out 0.2s;
+  opacity: 0;
+  visibility: hidden;
+
+  @include padding(38px, 0, 40px, 0);
+
+  border-radius: 0 4px 4px 0;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.megaMenu__wrapper {
+  padding: 0 48px;
+  max-width: 1920px;
+  margin: auto;
+}
+
+.megaMenu__row {
+  display: flex;
+}
+
+.megaMenu__nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -21px;
+
+  @include above('desktop') {
+    max-width: 684px;
+  }
+}
+
+.megaMenu__promotion {
+  max-width: 250px;
+  margin-left: auto;
+
+  @include above('desktop') {
+    max-width: 320px;
+  }
+}
+
+.megaMenu__leftNav {
+  min-width: 229px;
+}
+
+.megaMenu__leftNavItem {
+  margin-bottom: 13px;
+}
+
+.megaMenu__leftNavLink,
+.megaMenu__navLink {
+  @include text-style(16px, null, 20px, 700);
+
+  text-decoration: none;
+}
+
+.megaMenu__navContent {
+  margin: 0 21px;
+
+  @include above('desktop') {
+    min-width: 300px;
+  }
+}
+
+.megaMenu__navItem {
+  @include padding(13px, null, 10px, null);
+
+  border-bottom: 1px solid color('grey-95');
+}
+
+.megaMenu__navHeading {
+  @include text-style(12px, null, 16px, 400);
+
+  text-transform: uppercase;
+  color: color('primary');
+  margin: 2px 0 10px;
+}
+
+.megaMenu__navText {
+  @include text-style(14px, null, 18px, 400);
+
+  margin: 2px 0;
+  padding: 0;
+}
+
+.megaMenu__promotionHeading {
+  @include text-style(16px, null, 20px, 700);
+  @include margin(18px, null, 6px, null);
+
+  color: color('primary');
+}
+
+.megaMenu__promotionText {
+  @include text-style(14px, null, 18px, 400);
+
+  margin-bottom: 4px;
+}
+
+.megaMenu__promotionUrl {
+  @include text-style(16px, null, 20px, 700);
+
+  color: color(red);
+}
+
+.megaMenu__mostPopular {
+  background-color: color('denim-50');
+  color: color(white);
+
+  @include text-style(12px, null, 12px, 400);
+
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-left: 4px;
+  position: relative;
+  top: -1px;
+}
+
+.header__linkItem:hover {
+  .megaMenu {
+    transform: translateY(0);
+    transition:
+      transform ease-in 0.4s,
+      opacity ease-in 0.4s,
+      visibility ease-out 0.4s;
+    opacity: 1;
+    visibility: visible;
+  }
+}

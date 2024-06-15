@@ -1,0 +1,48 @@
+.collection-hero {
+  width: 100%;
+  max-height: 800px;
+  height: calc(100vh - 39px);
+  position: relative;
+  top: -84px;
+  z-index: 0;
+
+  @include margin(0, 0, -84px, 0);
+}
+
+.collection-hero__container {
+  @include flex(column, center, center, null);
+  @include float-fixed(absolute, 0, 0, 0, 0, 100%, 100%);
+  @include margin(0, auto, 0, auto);
+
+  max-width: size('page-tablet-large');
+  z-index: 99999999;
+  color: color('white');
+
+  @include below('page-tablet-large') {
+    @include margin(0, 20px, 0, 20px);
+
+    max-width: calc(100vw - 40px);
+  }
+}
+
+.collection-hero__title {
+  letter-spacing: 3.6px;
+  width: 100%;
+  word-break: break-word;
+
+  @include margin(0, 0, 30px, 0);
+}
+
+.collection-hero__description {
+  width: 100%;
+  @include text-style(null, 0.09px, 30.05px, null);
+  @include margin(0, 0, 30px, 0);
+}
+
+.collection-hero__image picture,
+.collection-hero__image img {
+  height: 100vh;
+  max-height: 800px;
+  object-fit: cover;
+  filter: brightness(0.7);
+}

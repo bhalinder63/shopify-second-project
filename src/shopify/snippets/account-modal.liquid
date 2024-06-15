@@ -1,0 +1,99 @@
+<div class="accountModal js-account-modal">
+    <div class="accountModal__wrapper">
+        <div class="accountModal__row">
+            <div class="accountModal__main">
+                <div class="accountModal__content accountModal__login js-acccount-modal-login">
+                    <div class="accountModal__header">
+                        <h4 class="accountModal__heading">Log In</h4>
+                        <p class="accountModal__text">Don’t have an account? <a href="#" class="js-acccount-signup">Sign Up</a></p>
+                    </div>
+                    <div class="accountModal__form" id="loginForm">
+                        {% form 'customer_login' %}
+                            {{ form.errors | default_errors }}
+
+                            <div class="input-group">
+                                <input type="email" name="customer[email]" placeholder="Email" class="js-form-input">
+                                <span class="accountModal__formError js-form-error">Please enter a valid email</span>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="password" name="customer[password]" placeholder="Password" class="js-form-input">
+                                <span class="accountModal__formError js-form-error">Please enter a valid passwrod</span>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="submit" class="btn btn-primary accountModal__btn" value="Sign in">
+                            </div>
+                            <div class="input-group">
+                                <a href="#" class="accountModal__forgot js-acccount-reset">Forgot Password</a>
+                            </div>
+                            
+                        {% endform %}
+                    </div>
+                        
+                </div>
+                
+                <div class="accountModal__content accountModal__signup js-acccount-modal-signup">
+                    <div class="accountModal__header">
+                        <h4 class="accountModal__heading">Sign Up</h4>
+                        <p class="accountModal__text">Already have an account? <a href="#" class="js-acccount-login">Login</a></p>
+                    </div>
+                    <div class="accountModal__form" id="registerForm">
+                        {% form 'create_customer' %}
+                            {{ form.errors | default_errors }}
+
+                            <div class="input-group">
+                                <input type="text" name="customer[first_name]" placeholder="First Name" class="js-form-input">
+                                <span class="accountModal__formError js-form-error">Please enter a first name</span>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="text" name="customer[last_name]" placeholder="Last Name" class="js-form-input">
+                                <span class="accountModal__formError js-form-error">Please enter a last name</span>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="email" name="customer[email]" placeholder="Email" class="js-form-input">
+                                <span class="accountModal__formError js-form-error">Please enter a email address</span>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" name="customer[password]" placeholder="Password" class="js-form-input">
+                                <span class="accountModal__formError js-form-error">Please enter a passwrod</span>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="submit" value="Create" class="btn btn-primary accountModal__btn">
+                            </div>                            
+                        {% endform %}
+                    </div>  
+                </div>
+
+                <div class="accountModal__content accountModal__reset js-acccount-modal-reset">
+                    <div class="accountModal__header">
+                        <h4 class="accountModal__heading">Reset Your Password</h4>
+                        <p class="accountModal__text">
+                            Already have an account? <a href="#" class="js-acccount-login">Login</a>
+                        </p>
+                    </div>
+                    <div class="accountModal__form" id="resetForm">
+                        {% form 'recover_customer_password' %}
+                            {{ form.errors | default_errors }}
+                            <div class="input-group">
+                                <input type="email" name="email" id="RecoverEmail" placeholder="Email" class="js-form-input">
+                                <span class="accountModal__formError js-form-error">Please enter a valid email</span>
+                                <label class="accountModal__label">Enter your email address, and we'll send you a link to reset your password.</label>
+                            </div>
+                             <div class="input-group">
+                                <input type="submit" value="Reset password" class="btn btn-primary accountModal__btn">
+                            </div>                            
+                        {% endform %}
+                    </div>
+                        
+                </div>
+            </div>
+            <a href="#" class="accountModal__close js-account-close">
+                {% render 'icons', icon: 'close' %}
+            </a>  
+        </div>
+    </div>    
+</div>

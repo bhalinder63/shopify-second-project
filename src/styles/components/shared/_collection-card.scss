@@ -1,0 +1,115 @@
+.collection-card {
+  width: 100%;
+  @include padding(50px, null, 50px, null);
+  @include flex(row, center, center, null);
+}
+
+.collection-card--alternate-background {
+  background-color: color('mila');
+}
+
+.collection-card__container {
+  width: calc(100vw - 100px);
+  max-width: size('page-tablet-large');
+
+  @include below('page-tablet-large') {
+    width: calc(100vw - 60px);
+  }
+}
+
+.js-collection-card {
+  min-height: 518px;
+}
+
+.collection-card__slide {
+  @include flex(column, center, center, null);
+
+  min-height: 518px;
+
+  min-width: 280px;
+  max-width: calc(25vw - 40px);
+
+  @include below('page-tablet-large') {
+    height: calc(25vw + 232px);
+  }
+}
+
+.collection-card__image {
+  max-height: 432px;
+  height: calc(25vw + 232px);
+  width: 100%;
+  min-width: 280px;
+
+  @include margin(0, 0, 12px, 0);
+
+  @include below('page-tablet-large') {
+    max-width: calc(25vw - 40px);
+    width: 100%;
+  }
+}
+
+.collection-card__image img {
+  max-height: 432px;
+  object-fit: cover;
+  height: calc(25vw + 132px);
+  min-width: 280px;
+  min-height: 340px;
+}
+
+.collection-card__product-title {
+  @include text-style(15px, null, 20.49px, 400);
+  @include margin(0, 0, 0, 0);
+  @include padding(12px, 0, 8px, 0);
+
+  width: 100%;
+}
+
+.collection-card__product-price {
+  @include text-style(13px, null, 20.49px, 400);
+  @include margin(0, 0, 0, 0);
+  @include padding(0, 0, 0, 0);
+
+  width: 100%;
+}
+
+.collection-card__compare-at-price {
+  color: color('gray-400');
+  text-decoration: line-through;
+}
+
+.collection-card__view-all {
+  @include padding(0, 2px, 2.5px, 2.5px);
+  @include text-style(null, null, 20.49px, 400);
+
+  &:visited,
+  &:link {
+    text-decoration: none;
+    color: color('gray-800');
+
+    @include use-text-style('p-md');
+  }
+}
+
+.collection-card__header {
+  @include flex(row, center, space-between, null);
+  @include margin(0, 0, 34px, 0);
+}
+
+.collection-card .swiper-horizontal > .swiper-scrollbar,
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+  max-width: 66.67%;
+  width: 100%;
+  height: 5px;
+
+  @include float-fixed(relative, 16.67%, 100%, 0, 0, null, null);
+
+  z-index: 2;
+
+  @include margin(30px, 0, 30px, 0);
+
+  @include below('page-tablet-large') {
+    max-width: 73.34%;
+
+    @include float-fixed(relative, 13.37%, 100%, 0, 0, null, null);
+  }
+}

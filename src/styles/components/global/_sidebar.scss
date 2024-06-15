@@ -1,0 +1,53 @@
+.collection__sidebar-mobile {
+  overflow: hidden;
+
+  @include float-fixed(fixed, 0, 0, 0, 0, 100%, 100%);
+
+  z-index: 99999;
+  background-color: color('grey-10');
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.sidebar__container {
+  position: relative;
+  background-color: color('grey-100');
+  height: 100%;
+  overflow-y: scroll;
+}
+
+@media screen and (min-width: 400px) {
+  .sidebar__container {
+    max-width: 37.5rem;
+  }
+}
+
+.sidebar__header {
+  flex: 1;
+  margin: 0 !important;
+  border-bottom: 1px solid color('grey-90');
+  position: sticky;
+  top: 0;
+  z-index: 10002;
+  background: color('grey-100');
+
+  @include flex(row, center, space-between);
+  @include padding(2.1rem, 1.6rem, 2.1rem, 1.6rem);
+}
+
+.sidebar__headerText {
+  @include text-style(1.4rem, 0, 1.8rem, 400);
+
+  color: color('grey-10');
+
+  &.red {
+    cursor: pointer;
+    color: color('trade-red');
+  }
+}

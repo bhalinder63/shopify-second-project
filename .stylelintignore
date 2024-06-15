@@ -1,0 +1,5 @@
+dist/
+node_modules/
+styles/vendor
+styles/tools
+src/design-tokens/_sizes.scss

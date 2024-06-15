@@ -1,0 +1,118 @@
+.photo-cards {
+  width: 100%;
+  @include padding(80px, 80px, 80px, 80px);
+  background-color: color('mila');
+
+  @include flex(row, center, center, null);
+
+  @include below('mobile-large') {
+    @include flex(column, center, center, null);
+
+    padding: 0 80px;
+    height: auto;
+  }
+
+  overflow: hidden;
+}
+
+.photo-card {
+  display: block;
+  height: 61.5vw;
+  width: calc(55vw + 5px);
+  max-height: 760px;
+  max-width: 690px;
+  color: color('white');
+
+  @include margin(0px, 0px, 0px, 10px);
+  @include float-fixed(relative, null, null, null, null, null, null);
+
+  &:first-child {
+    width: 43.5vw;
+    max-width: 530px;
+
+    @include margin(0px, 10px, 0px, 0px);
+
+    @include below('mobile-large') {
+      @include margin(0, 0, 0, 0);
+
+      max-width: 530px;
+      max-height: 530px;
+      width: 100vw;
+      height: 101.5vw;
+    }
+  }
+
+  a {
+    &:visited,
+    &:link {
+      text-decoration: none;
+      color: color('white');
+    }
+  }
+
+  img {
+    object-fit: cover;
+    max-height: 760px;
+    height: 61vw;
+
+    @include below('mobile-large') {
+      max-height: 530px;
+      max-width: 530px;
+      width: 100vw;
+      height: 101.5vw;
+    }
+  }
+
+  h3 {
+    @include float-fixed(absolute, 40px, null, null, 40px, null, null);
+
+    z-index: 2;
+
+    @include below('mobile-large') {
+      @include float-fixed(absolute, 19px, null, null, 106px, null, null);
+
+      @include use-text-style('heading-xl');
+
+      letter-spacing: 0.31px;
+    }
+  }
+
+  p {
+    letter-spacing: 1.3px;
+    line-height: 17.76px;
+    @include margin(0, 0, 0, 0);
+    @include padding(0, 0, 0, 0);
+
+    text-transform: uppercase;
+
+    @include float-fixed(absolute, 40px, null, null, 78px, null, null);
+
+    z-index: 2;
+
+    @include below('mobile-large') {
+      display: block;
+      @include float-fixed(absolute, 20px, null, null, 155px, null, null);
+    }
+  }
+
+  @include below('mobile-large') {
+    @include margin(0, 0, 0, 0);
+
+    max-width: 530px;
+    max-height: 530px;
+    width: 100vw;
+    height: 101.5vw;
+  }
+
+  button {
+    display: none;
+    color: color('gray-800');
+
+    @include below('mobile-large') {
+      display: block;
+      @include float-fixed(absolute, 20px, null, null, 20px, null, null);
+
+      @include padding(17px, 28.5px, 17px, 28.5px);
+    }
+  }
+}

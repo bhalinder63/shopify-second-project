@@ -1,0 +1,179 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+html {
+  background-color: color('white');
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+  -ms-overflow-style: auto;
+  font-size: 62.5%;
+  &.nav-open {
+    overflow: hidden;
+  }
+}
+
+body {
+  @include use-text-style('body');
+
+  color: color('gray-800');
+  &::after {
+    transition: opacity ease-in 0.1s, background-color ease-out 0.1s;
+    background-color: color('primary');
+    opacity: 0;
+    visibility: hidden;
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+  }
+  &.mobile-nav-open {
+    position: relative;
+    overflow: hidden;
+    &::after {
+      transition: opacity ease-in 0.3s, background-color ease-out 0.3s;
+      opacity: 0.8;
+      visibility: visible;
+    }
+  }
+}
+
+body,
+input,
+textarea,
+button,
+select {
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+}
+
+.button {
+  @include use-text-style('p-md');
+
+  @include padding(18px, 30px, 18px, 30px);
+
+  line-height: 20.49px;
+
+  background-color: color('white');
+  border-radius: 4px;
+
+  &:visited,
+  &:link {
+    text-decoration: none;
+    color: color('gray-800');
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @include use-text-style('heading');
+  @include margin(null, null, null, null);
+}
+
+.h1,
+h1 {
+  @include use-text-style('heading-2xl');
+}
+
+.h2,
+h2 {
+  @include use-text-style('heading-xl');
+}
+
+.h3,
+h3 {
+  @include use-text-style('heading-lg');
+}
+
+.h4,
+h4 {
+  @include use-text-style('heading-md');
+}
+
+.p-lg {
+  @include use-text-style('p-lg');
+}
+
+.p-md {
+  @include use-text-style('p-md');
+}
+
+.p-sm {
+  @include use-text-style('p-sm');
+}
+
+.p-xs {
+  @include use-text-style('p-xs');
+}
+
+.p,
+p {
+  @include use-text-style('p');
+}
+
+.semibold {
+  @include use-text-style('semibold');
+}
+
+.bold {
+  @include use-text-style('bold');
+}
+
+ol,
+ul,
+dl {
+  padding: 0;
+  list-style: none;
+  li {
+    padding: 0 0 8px;
+    @include use-text-style('paragraph');
+  }
+}
+
+a {
+  color: color('link');
+  text-decoration: underline;
+  background-color: transparent; // Remove the gray background on active links in IE 10.
+  text-decoration-skip: objects; // Remove gaps in links underline in iOS 8+ and Safari 8+.
+
+  &:hover {
+    color: color('link-hover');
+  }
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+
+  th,
+  td {
+    @include padding(
+      size('gutter'),
+      size('gutter'),
+      size('gutter'),
+      size('gutter')
+    );
+
+    border: 1px solid color('light-grey');
+    vertical-align: top;
+  }
+}
+
+.hide {
+  display: none;
+}

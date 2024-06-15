@@ -1,0 +1,91 @@
+{% if section.settings.showAnnouncement %}
+  <div class="announcement">
+    {{ section.settings.announcementText }}
+  </div>
+{% endif %}
+<header
+  class="header"
+  x-data="{ navOpen: false, searchOpen: false }"
+>
+  <div
+    class="header__wrapper {% if request.path == '/' or request.path contains '/collections' %}header--white{% endif %}"
+  >
+    <button class="header__hamburger" x-on:click="navOpen = !navOpen">
+      {% render 'icons', icon: 'hamburger' %}
+    </button>
+    <a href="{{ routes.root_url }}" class="header__logo">
+      <img src="{{ settings.logo.src | image_url }}" alt="Logo">
+    </a>
+    <nav class="header__menu">
+      {% for link in linklists['main-menu'].links %}
+        <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+    <div class="header__button-group">
+      <a href="{{ routes.account_url }}" class="header__menu-link header__account-link">Account</a>
+
+      <div role="button" class="header__search-button" x-on:click="searchOpen = !searchOpen">
+        {%- render 'search-icon' -%}
+      </div>
+
+      <div class="header__cart-button js-cart-button">
+        {%- render 'cart-icon' -%}
+        <p class="header__cart-number p-sm js-cart-quantity">0</p>
+      </div>
+    </div>
+  </div>
+  <div
+    x-show="navOpen"
+    x-bind:class="navOpen ? 'header__mobile-menu header--active' : 'header__mobile-menu'"
+    class="header__mobile-menu"
+  >
+    <button class="header__close" x-on:click="searchOpen = !searchOpen">
+      {% render 'icons', icon: 'close' %}
+    </button>
+    <nav class="header__mobile-menu-links">
+      {% for link in linklists['main-menu'].links %}
+        <a href="{{ link.url }}" class="header__mobile-menu-link">{{ link.title }}</a>
+      {% endfor %}
+      <a href="{{ routes.account_url }}" class="header__mobile-menu-link">Account</a>
+    </nav>
+  </div>
+  <div
+    x-show="searchOpen"
+    x-bind:class="searchOpen ? 'header__search-page header--active' : 'header__search-page'"
+    class="header__search-page"
+  >
+    <form action="{{ routes.search_url }}" method="get" class="header__search-form">
+      <input
+        type="text"
+        name="q"
+        placeholder="Search"
+        class="header__search-input"
+      >
+      <button type="submit" class="header__search-submit">
+        {% render 'search-icon' %}
+      </button>
+      <div role="button" class="header__close" x-on:click="searchOpen = !searchOpen">
+        {% render 'icons', icon: 'close' %}
+      </div>
+    </form>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "showAnnouncement",
+      "label": "Enable Announcement",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "announcementText",
+      "label": "Label"
+    }
+  ]
+}
+{% endschema %}

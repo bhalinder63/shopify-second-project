@@ -1,0 +1,14 @@
+{% if customer %}
+  {% assign secret_key = shop.metafields.ordergroove.themeHashKey.value %}
+  {% assign customer_id = customer.id %}
+  {% assign timestamp = 'now' | date: '%s' %}
+  {% assign signature = customer_id | append: '|' | append: timestamp | hmac_sha256: secret_key %}
+  <p>
+    <a
+      href="/apps/subscriptions/manage/?customer={{customer.id}}&customer_signature={{signature}}&customer_timestamp={{timestamp}}"
+      class="button og-manage-subscriptions"
+    >
+      Manage Your Subscriptions
+    </a>
+  </p>
+{% endif %}

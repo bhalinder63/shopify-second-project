@@ -1,0 +1,38 @@
+.swiper-container {
+  overflow: hidden;
+}
+
+.swiper-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.swiper-slide {
+  flex-shrink: 0;
+}
+
+.swiper-button-lock,
+.swiper-pagination-lock {
+  /* !important is required */
+  display: none !important;
+}
+
+.swiper-button-disabled {
+  display: none !important;
+}
+
+.swiper__carousel {
+  position: relative;
+  overflow: hidden;
+  flex: 1 0 0;
+}
+
+.swiper__row {
+  @include flex(row, null, null, nowrap);
+}
+
+.swiper__col {
+  flex-shrink: 0;
+  align-self: stretch;
+  overflow: hidden;
+}

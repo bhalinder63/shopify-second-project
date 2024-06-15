@@ -1,0 +1,92 @@
+.products-feature {
+  @include flex(column, center, center, null);
+
+  width: 100%;
+  text-align: center;
+  background-color: color('mila');
+
+  @include padding(100px, 0, 100px, 0);
+}
+
+.products-feature__title {
+  @include margin(0, auto, 40px, auto);
+
+  letter-spacing: 1.3px;
+}
+
+.products-feature__cards {
+  @include flex(row, center, center, null);
+
+  width: 100%;
+  max-width: size('page-tablet-large');
+
+  @include below('mobile-large') {
+    @include flex(column, center, center, null);
+  }
+}
+
+.products-feature__card {
+  width: calc(33.33vw - 20px);
+
+  max-width: 400px;
+
+  @include flex(column, center, flex-start, null);
+  @include padding(20px, 10px, 20px, 10px);
+
+  align-self: stretch;
+
+  @include below('mobile-large') {
+    @include flex(column, center, flex-start, null);
+
+    align-self: center;
+
+    width: 100%;
+    max-width: calc(100vw - 40px);
+    @include padding(20px, 6.5px, 20px, 6.5px);
+  }
+}
+
+.products-feature__image {
+  width: 100%;
+  height: calc(33.33vw + 67px);
+  max-height: 447px;
+
+  picture,
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include padding(0, 0, 30px, 0);
+
+  @include below('mobile-large') {
+    max-width: 100%;
+    max-height: none;
+    height: calc(100vw - 10px);
+  }
+}
+
+.products-feature__name {
+  @include text-style(null, 0.84px, 25.39px, null);
+  @include margin(0, 0, 10px, 0);
+}
+
+.products-feature__description {
+  width: 100%;
+
+  @include text-style(null, null, 20.49px, null);
+  @include margin(0, 0, 30px, 0);
+}
+
+.products-feature__link {
+  &:visited,
+  &:link {
+    color: color('gray-800');
+    width: 100%;
+
+    @include text-style(null, null, 20.49px, 500);
+
+    @include use-text-style('p-md');
+  }
+}

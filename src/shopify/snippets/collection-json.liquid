@@ -1,0 +1,89 @@
+{%- capture filters -%}
+[
+    {% for filter in shop.metaobjects.collection_filter.values %}
+        {
+            "filter_title" : "{{ filter.filter_title }}",
+            "filter_key" : "{{ filter.filter_title | remove: ' ' }}",
+            "filter_order": "{{ filter.order }}",
+            "filter_through" : "tags",
+            "filter_values":  [
+                {% for value in filter.filter_value.value %}
+                    {% assign lowerCase = value | downcase %}
+                    {
+                        "title" : "{{value}}",
+                        "enable" : "true"
+                    }
+                    {%- unless forloop.last -%},{%- endunless -%}
+                {% endfor %}
+            ]
+            
+        }
+        {%- unless forloop.last -%},{%- endunless -%}
+    {% endfor %}
+]
+{%- endcapture -%}
+
+{%- capture collection_products -%}
+[
+    {%- for product in collection.products -%}
+
+    {% assign currencyCode = product.price | money | slice: 0, 1 %}
+    {% assign priceParts = product.price | money_without_currency | split: '.' %}
+    {% assign dollars = priceParts[0] %}
+    {% assign cents = priceParts[1] %}   
+
+    {
+        "created_at": "{{ product.created_at | date: "%s" }}",
+        "id": {{ product.id }},
+        "index" : {{forloop.index}},
+        "title" : "{{ product.handle  }}",
+        "handle": "{{ product.handle }}",
+        "vendor": "{{ product.vendor }}",
+        "url": "{{ product.url }}",
+        "type": "{{ product.type | downcase }}",
+        "price": {{ product.price }},
+        "collections" : [ 
+            {%- for item in product.collections -%} 
+                "{{ item.title | downcase }}"
+            {%- unless forloop.last -%},{%- endunless -%} 
+            {%- endfor -%} 
+        ],
+        "price_obj" : {
+            "currencyCode" : "{{currencyCode}}",
+            "priceParts" : "{{priceParts}}",
+            "dollars" : "{{dollars}}",
+            "cents" : "{{cents}}"
+        },
+        "published_at": "{{ product.published_at | date: "%s" }}",
+        "media": {{ product.media | json }},
+        "short_description" : "{{ product.metafields.custom.short_description.value | default: product.description | escape }}",
+        "fitlers_values" : "{{ product.metafields.custom.filter_values.value }}",
+        "hightlight_tag" : "{{ product.metafields.custom.highlight_tag | default : false }}",
+        "tags" : {{ product.tags | append: ' ' | downcase}},
+        "variants": [
+            {%- for variant in product.variants -%}
+                {
+                    "id": {{ variant.id }},
+                    "title": "{{ variant.title }}",
+                    "price": {{ variant.price }},
+                    "available": {{ variant.available }},
+                    "featured_image": {{ variant.featured_image | json }},
+                    "discount": "{{ variant.metafields.bundles.discount }}",
+                    "inventory_quantity": {{ variant.inventory_quantity }}
+                }
+                {%- unless forloop.last -%},{%- endunless -%}
+            {%- endfor -%}
+        ]
+    }
+    {%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+]
+{%- endcapture -%}
+
+<script type="application/text" id="collectionData">
+  {
+      "handle" : "{{ collection.handle }}",
+      "products" : {{ collection_products }},
+      "filters" : {{ filters }}
+  }
+</script>

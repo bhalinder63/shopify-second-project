@@ -1,0 +1,17 @@
+/*
+ * Import style components for the current template.
+ *
+ * Write your own styles after imports.
+ *
+ * Design tokens are required and encapsulated for each template.
+ * Import it from the design-tokens folder.
+ */
+
+// Design tokens
+@import './src/design-tokens/index';
+
+// Collections related css
+@import 'Styles/components/shared/collection-hero';
+@import 'Styles/components/shared/collection-filters';
+@import 'Styles/components/shared/collection-products-grid';
+@import 'Styles/components/shared/collections-slider';

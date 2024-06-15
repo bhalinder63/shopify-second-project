@@ -1,0 +1,68 @@
+/*
+ * Import style components for the current template.
+ *
+ * Write your own styles after imports.
+ *
+ * Design tokens are required and encapsulated for each template.
+ * Import it from the design-tokens folder.
+ */
+
+// Design tokens
+@import './src/design-tokens/index';
+
+.customer-account {
+  display: grid;
+  max-width: size('page-tablet-max');
+  margin: 32px auto 84px;
+  padding: 0 20px;
+  grid-template-columns: 25% 1fr;
+
+  @include below('tablet') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.account-sidebar {
+  @include below('tablet') {
+    max-width: calc(100vw - 20px);
+  }
+}
+
+.account-sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 24px 0 0;
+  margin: 34px 0;
+
+  @include below('tablet') {
+    flex-direction: row;
+    overflow-x: scroll;
+    max-width: 100%;
+    padding: 0 24px 8px 0;
+    margin: 34px 0 26px;
+  }
+}
+
+.account__button {
+  text-align: left;
+  padding: 16px;
+  border: 1px solid color('gray-800');
+  @include use-text-style('p-lg');
+  @include use-text-style('semibold');
+  &:visited,
+  &:link {
+    color: color('gray-800');
+    text-decoration: none;
+  }
+
+  @include below('tablet') {
+    white-space: nowrap;
+  }
+}
+
+.account__button--active {
+  cursor: default;
+  background-color: color('gray-800');
+  color: color('white');
+}

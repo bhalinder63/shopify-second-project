@@ -1,0 +1,120 @@
+<product-details>
+  <div class="product-details__container">
+    <div class="product-details__images js-product-details swiper {% if product.images.size == 1 -%}product-details__images--single{%- endif %}">
+      {% for image in product.images limit: 4 %}
+        <div class="product-details__image">
+          {% render 'render-responsive-image' with imageData: image %}
+        </div>
+      {% endfor %}
+      <div class="swiper-wrapper">
+        {% for image in product.images limit: 4 %}
+          <div class="swiper-slide">
+            {% render 'render-responsive-image' with imageData: image %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="product-details__content">
+      <p class="product-details__vendor p-xs">{{ product.vendor }}</p>
+      <h1 class="product-details__title h3">{{ product.title }}</h1>
+      <p class="product-details__price p-lg" data-price>
+        {{ product.price | money }}
+        {% if product.compare_at_price > product.price -%}
+          <span class="product-details__price--compare">{{ product.compare_at_price | money }}</span>
+        {%- endif %}
+      </p>
+      <div class="product-details__options {% if product.has_only_default_variant -%}product-details__options--none{%- endif%}">
+        {% for option in product.options_with_values -%}
+          <div
+            class="product-details__option"
+            data-option
+            data-option-name="{{ option.name | handle }}"
+          >
+            <label
+              for="option-{{ option.name | handle }}"
+              class="product-details__option-label p-md bold"
+            >
+              {{ option.name }}
+            </label>
+
+            <div class="product-details__option-values p-md">
+              {% for value in option.values -%}
+                <span
+                  class="product-details__option-value"
+                  data-option-value="{{ value }}"
+                  data-option-position="{{ option.position }}"
+                >
+                  {{ value }}
+                </span>
+              {%- endfor %}
+            </div>
+          </div>
+        {%- endfor %}
+      </div>
+      <div class="product-details__add-to-cart p-md">
+        <div class="button product-details__counter-button">
+          <div data-quantity-change data-quantity-decrement class="product-details__counter-change" role="button">
+            {% render 'icons', icon: 'minus' %}
+          </div>
+          <div data-quantity="1">1</div>
+          <div data-quantity-change data-quantity-increment class="product-details__counter-change" role="button">
+            {% render 'icons', icon: 'plus' %}
+          </div>
+        </div>
+        <button class="button product-details__add-to-cart-button" data-add-to-cart>Add to Cart</button>
+        <input type="hidden" value="{{ product.selected_or_first_available_variant.id }}" data-variant>
+      </div>
+      {% if product.selling_plan_groups.size > 0 -%}
+        {% assign discount = product.selling_plan_groups.first.selling_plans.first.price_adjustments.first.value %}
+        <div class="product-details__selling-plan" data-selling-plan>
+          <div class="selling-plan__option selling-plan__option--selected" data-sp-once>
+            <div class="selling-plan__radio"></div>
+            <div class="p-md selling-plan__type">One-time Purchase</div>
+            <div class="p-md" data-sp-price>{{ product.price | money }}</div>
+          </div>
+          <div class="selling-plan__option" data-sp-plan>
+            <div class="selling-plan__radio"></div>
+            <div class="p-md selling-plan__type">
+              <div>Subscribe and Save</div>
+              <div class="p-xs">Save {{ discount }}% when you subscribe</div>
+              <select class="p-md">
+                {% for plan in product.selling_plan_groups.first.selling_plans -%}
+                  <option
+                    value="{{ plan.id }}"
+                    {% if forloop.index == 1 -%}
+                      data-sp-selected
+                    {%- endif -%}
+                  >
+                    {{ plan.options.first.name }}
+                    {{ plan.options.first.value }}
+                  </option>
+                {%- endfor %}
+              </select>
+            </div>
+            {%- assign discountedBy = product.price | times: discount | divided_by: 100 -%}
+            <div class="p-md" data-sp-price>{{ product.price | minus: discountedBy | money }}</div>
+          </div>
+        </div>
+      {%- endif %}
+      {% render 'product-accordion', icon: 'eye', title: 'Product Description', content: product.description %}
+      {% render 'product-accordion', icon: 'size', title: 'Size & Fit', content: "There's small, medium, and large." %}
+    </div>
+  </div>
+</product-details>
+
+{% schema %}
+{
+  "name": "Product Details",
+  "presets": [
+    {
+      "category": "Product",
+      "name": "Product Details"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  var product = {{ product | json }};
+</script>

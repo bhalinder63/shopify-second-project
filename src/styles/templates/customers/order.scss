@@ -1,0 +1,62 @@
+/*
+ * Import style components for the current template.
+ *
+ * Write your own styles after imports.
+ *
+ * Design tokens are required and encapsulated for each template.
+ * Import it from the design-tokens folder.
+ */
+
+// Design tokens
+@import './src/design-tokens/index';
+
+.customer-orders {
+  margin: 61px 0 0;
+  padding: 0 0 0 24px;
+  border-left: 1px solid color('gray-300');
+  height: 100%;
+
+  @include below('tablet') {
+    padding: 0;
+    margin: 61px 0 100px;
+    border: none;
+    max-width: calc(100vw - 44px);
+    overflow-x: scroll;
+  }
+}
+
+.customer-orders table {
+  border: 1px solid color('gray-300');
+  border-radius: 6px;
+  border-collapse: separate;
+  margin: 24px 0;
+
+  @include below('tablet') {
+    width: 600px;
+  }
+}
+
+.customer-orders th {
+  @include use-text-style('p-lg');
+  @include use-text-style('semibold');
+}
+
+.customer-orders th:nth-child(even) {
+  background-color: color('gray-100');
+}
+
+.customer-orders tbody tr:nth-child(odd) {
+  background-color: color('warning-100');
+}
+
+.customer-orders td {
+  @include use-text-style('p-md');
+}
+
+.customer-orders td a {
+  &:visited,
+  &:link {
+    color: color('gray-800');
+    @include use-text-style('semibold');
+  }
+}

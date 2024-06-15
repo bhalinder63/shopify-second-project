@@ -1,0 +1,64 @@
+.search {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: color(white);
+  top: 0;
+  left: 0;
+  padding: 16px;
+  transition: opacity ease-in 0.1s, visibility ease-out 0.1s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 102;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @include above('tablet') {
+    padding: 32px;
+  }
+}
+
+.search__wrapper {
+  max-width: 864px;
+  margin: 0 auto;
+}
+
+.search__content {
+  position: relative;
+  padding-right: 30px;
+
+  @include above('tablet') {
+    padding-right: 0;
+  }
+}
+
+.search__input {
+  color: color('grey-60');
+
+  @include text-style(16px, null, 20px, 400);
+
+  padding: 13px 10px;
+  width: 100%;
+  outline: none;
+  background: color('grey-95');
+}
+
+.search__button {
+  position: absolute;
+  right: 14px;
+  top: 2px;
+}
+
+.search__close {
+  position: absolute;
+  right: 0;
+  top: 15px;
+
+  @include above('tablet') {
+    right: -35px;
+    top: 13px;
+  }
+}

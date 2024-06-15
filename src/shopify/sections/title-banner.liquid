@@ -1,0 +1,57 @@
+<div class="title-banner__image">
+  {% if section.settings.image != blank %}
+    {% render 'render-responsive-image' with imageData: section.settings.image %}
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endif %}
+</div>
+<h5 class="title-banner__accent-text p-xs">{{ section.settings.accent }}</h5>
+<h2 class="h1 title-banner__title">{{ section.settings.title }}</h2>
+<p class="title-banner__subtitle">{{ section.settings.subtitle }}</p>
+{% if section.settings.newsletter -%}
+  <form method="post" class="title-banner__newsletter">
+    <input type="email" name="email" placeholder="Enter email" class="title-banner__newsletters-input">
+    <button type="submit" class="title-banner__newsletter-submit">{% render 'arrow-right' %}</button>
+  </form>
+{%- endif %}
+
+{% schema %}
+{
+  "name": "Title Banner",
+  "tag": "section",
+  "class": "title-banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "accent",
+      "label": "Accent Text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter",
+      "label": "Newsletter"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Title Banner"
+    }
+  ]
+}
+{% endschema %}

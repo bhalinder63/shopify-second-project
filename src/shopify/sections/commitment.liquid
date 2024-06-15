@@ -1,0 +1,52 @@
+<div class="commitment__container">
+  <div class="commitment__image">
+    {% if section.settings.image != blank %}
+      {% render 'render-responsive-image' with imageData: section.settings.image %}
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+  </div>
+  <div class="commitment__copy">
+    <h3 class="commitment__title">{{ section.settings.title }}</h3>
+    <div class="commitment__underline"></div>
+    <p class="commitment__subtitle p-md">{{ section.settings.subtitle }}</p>
+    {% if section.settings.link != blank -%}
+    <a href="{{ section.settings.link }}" class="commitment__link">Read More</a>
+    {%- endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Commitment",
+  "tag": "section",
+  "class": "commitment",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Image",
+      "id": "image"
+    },
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title"
+    },
+    {
+      "type": "text",
+      "label": "Subtitle",
+      "id": "subtitle"
+    },
+    {
+      "type": "url",
+      "label": "Link",
+      "id": "link"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Commitment"
+    }
+  ]
+}
+{% endschema %}

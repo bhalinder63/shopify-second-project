@@ -1,0 +1,23 @@
+/*
+ * The file collects all global styles.
+ */
+
+// Core
+@import 'typography';
+@import 'layout';
+@import 'forms';
+@import 'buttons';
+
+// Site Header
+@import 'header';
+
+// Footer
+@import 'footer';
+
+// Global
+@import 'cart';
+@import 'image';
+@import 'swiper';
+
+// Ordergroove
+@import 'ordergroove';

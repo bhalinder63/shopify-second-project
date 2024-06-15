@@ -1,0 +1,75 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="faq__wrapper">
+    <h1 class="faq__header">{{ section.settings.title }}</h1>
+    {% for block in section.blocks %}
+      <div x-data="{ expanded: false }" class="faq">
+        <button
+          @click="expanded = ! expanded"
+          :class="expanded ? 'faq__question--expanded faq__question' : 'faq__question'"
+        >
+          <h4>{{ block.settings.question }}</h4>
+          <h4 :class="expanded ? '' : 'faq__downArrow' ">{% render 'icons', icon: 'arrow-up' %}</h4>
+        </button>
+
+        <div
+          x-show="expanded"
+          x-collapse
+          x-collapse.duration.50ms
+          class="faq__answer"
+        >
+          {{ block.settings.answer }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    import Alpine from 'alpinejs';
+    import collapse from '@alpinejs/collapse';
+
+    Alpine.plugin(collapse);
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "faq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Coffee Talk"
+    },
+    {
+      "type": "text",
+      "id": "sub-title",
+      "label": "Sub Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Question",
+      "settings": [
+        {
+          "id": "question",
+          "type": "text",
+          "label": "Question"
+        },
+        {
+          "id": "answer",
+          "type": "text",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

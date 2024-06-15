@@ -1,0 +1,60 @@
+<div class="collections-slider__container">
+  <div class="collections-slider__header">
+    <h3>{{ section.settings.title }}</h3>
+    {% if section.settings.view_all %}
+      <a href="/collections/automated-collection" class="collections-slider__view-all">View all</a>
+    {% else %}
+      <div></div>
+    {% endif %}
+  </div>
+  <div class="swiper-container js-collections-slider">
+    <div class="swiper-wrapper">
+      {% for collection in section.settings.collections %}
+        {% if collection %}
+          <div class="swiper-slide collections-slider__slide">
+            <a href="{{ collection.url }}" class="collections-slider__image">
+              <h3 class="collections-slider__title">{{ collection.title }}</h3>
+              {% if collection.featured_image != blank %}
+                {% render 'render-responsive-image' with imageData: collection.featured_image %}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="swiper-scrollbar collections-slider__scrollbar"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collections Slider",
+  "tag": "section",
+  "class": "collections-slider",
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Collections Slider"
+    }
+  ],
+  "settings": [
+    {
+      "type": "collection_list",
+      "id": "collections",
+      "label": "Collection List"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "view_all",
+      "label": "View All"
+    }
+  ]
+}
+{% endschema %}

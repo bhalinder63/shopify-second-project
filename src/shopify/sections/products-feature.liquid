@@ -1,0 +1,53 @@
+<h3 class="products-feature__title">{{ section.settings.title }}</h3>
+<div class="products-feature__cards">
+  {% for block in section.blocks %}
+    {% assign product = block.settings.product %}
+    <div class="products-feature__card">
+      <div class="products-feature__image">
+        {% if product.featured_image != blank %}
+          {% render 'render-responsive-image' with imageData: product.featured_image %}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+      <h4 class="products-feature__name">{{ product.title }}</h4>
+      <p class="products-feature__description p-md">{{ product.description }}</p>
+      <a href="{{ product.url }}" class="products-feature__link">Shop Now</a>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Products Feature",
+  "tag": "section",
+  "class": "products-feature",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "product-card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Products Feature"
+    }
+  ]
+}
+{% endschema %}

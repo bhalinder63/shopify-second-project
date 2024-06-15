@@ -1,0 +1,25 @@
+<div class="collection-hero__container">
+  <h1 class="collection-hero__title">{{ collection.title }}</h1>
+  <div class="collection-hero__description">{{ collection.description }}</div>
+</div>
+<div class="collection-hero__image">
+  {% if collection.featured_image != blank %}
+    {% render 'render-responsive-image' with imageData: collection.featured_image %}
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Collection Hero",
+  "tag": "section",
+  "class": "collection-hero",
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Collection Hero"
+    }
+  ]
+}
+{% endschema %}

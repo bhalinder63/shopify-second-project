@@ -1,0 +1,57 @@
+{% for block in section.blocks %}
+  <div class="photo-card">
+    <a href="{{ block.settings.link }}">
+      {% if block.settings.image != blank %}
+        {% render 'render-responsive-image' with imageData: block.settings.image %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+      <p class="p-xs">{{ block.settings.subtitle }}</p>
+      <h3>{{ block.settings.title }}</h3>
+      <button class="button">Shop Now</button>
+    </a>
+  </div>
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Photo Cards",
+  "tag": "section",
+  "class": "photo-cards",
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Photo Cards"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "photo-card",
+      "name": "Photo Card",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Image",
+          "id": "image"
+        },
+        {
+          "type": "text",
+          "label": "Title",
+          "id": "title"
+        },
+        {
+          "type": "text",
+          "label": "Subtitle",
+          "id": "subtitle"
+        },
+        {
+          "type": "url",
+          "label": "Link",
+          "id": "link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

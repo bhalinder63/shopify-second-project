@@ -1,0 +1,68 @@
+/// @link https://www.oddbird.net/accoutrement/docs/scale.html
+
+$ratios: (
+  'ratio': 0.25,
+);
+$sizes: (
+  'root': 16px,
+  'gutter': 15px,
+
+  // default spacings for paddings and margins.
+  'large': '#root'
+    (
+      'times': 3,
+    ),
+  'medium': '#root'
+    (
+      'times': 2,
+    ),
+  'small': '#root'
+    (
+      'times': 1,
+    ),
+  // reference existing sizes
+  'text': '#root',
+
+  'h1': '#root'
+    (
+      'times': 2.5,
+    ),
+  'h2': '#root'
+    (
+      'times': 2,
+    ),
+  'h3': '#root'
+    (
+      'times': 1.75,
+    ),
+  'h4': '#root'
+    (
+      'times': 1.5,
+    ),
+  // Page Responsive sizes
+  // =====================
+  'page': 23.475rem,
+  // 375px (Mobile, landscape)
+  'page-mobile-medium': 640px,
+  'page-mobile-large': '#page'
+    (
+      'times': 2,
+    ),
+  // 640px (Mobile, landscape)
+  'page-tablet': '#page'
+    (
+      'times': 2.4,
+    ),
+  // 768px (Tablet, portrait)
+  'page-tablet-large': 1200px,
+  // 1200px (Tablet, landscape)
+  'page-tablet-max': 1240px,
+  // 1240px (Tablet, landscape)
+  'page-desktop': 1400px,
+  // 1400px (HD laptops (768p))
+  'page-desktop-medium': 90rem,
+  // 1440px (Desktop displays medium)
+  'page-desktop-large': 105rem,
+  // 1680px (Desktop displays large)
+  'page-desktop-max': 120rem // 1920px (Desktop displays max),,,,,,,,,,,,,,
+);

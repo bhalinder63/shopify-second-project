@@ -1,0 +1,83 @@
+/*
+ * Import style components for the current template.
+ *
+ * Write your own styles after imports.
+ *
+ * Design tokens are required and encapsulated for each template.
+ * Import it from the design-tokens folder.
+ */
+
+// Design tokens
+@import './src/design-tokens/index';
+
+.customer-addresses {
+  margin: 61px 0 0;
+  padding: 0 0 0 24px;
+  border-left: 1px solid color('gray-300');
+
+  @include below('tablet') {
+    padding: 0;
+    border: none;
+  }
+}
+
+.customer-addresses h2 {
+  text-align: left;
+}
+
+.address {
+  margin: 24px 0;
+  padding: 0 0 0 8px;
+  border-left: 2px solid color('gray-800');
+}
+
+.address p {
+  text-align: left;
+}
+
+.address__actions {
+  display: flex;
+  gap: 16px;
+  margin: 16px 0 0;
+}
+
+.address__action {
+  text-align: center;
+  @include use-text-style('p-sm');
+}
+
+.address__action-button {
+  padding: 8px;
+  border: 1px solid color('gray-800');
+  width: 100px;
+}
+
+.address__add {
+  a {
+    padding: 12px 0;
+    @include use-text-style('p-md');
+    @include use-text-style('semibold');
+
+    &:visited,
+    &:link {
+      color: color('gray-800');
+    }
+  }
+}
+
+.address-form__set-default {
+  display: flex;
+  margin: 24px 0 16px;
+
+  input {
+    display: inline;
+  }
+
+  label {
+    @include use-text-style('semibold');
+  }
+}
+
+.customer-addresses .account-form {
+  margin: 48px 0;
+}

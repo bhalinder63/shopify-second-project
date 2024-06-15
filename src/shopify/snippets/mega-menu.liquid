@@ -1,0 +1,52 @@
+<div class="megaMenu" data-mega-menu="{{menu.label}}">
+    <div class="megaMenu__wrapper">
+        <div class="megaMenu__row">
+            <ul class="megaMenu__leftNav">
+                {% for link in linklists[menu.left-menu].links %}
+                    <li class="megaMenu__leftNavItem">
+                        <a href="{{ link.url }}" class="megaMenu__leftNavLink">{{ link.title }}</a>
+                    </li>
+                {% endfor %}    
+            </ul>
+        
+            <div class="megaMenu__nav">
+                {% for link in linklists[menu.main-menu].links %}
+                    <div class="megaMenu__navContent">
+                        <h6 class="megaMenu__navHeading">{{ link.title }}</h6>
+                        <ul>
+                            {%- for sub_link in link.links -%}
+                                <li class="megaMenu__navItem">
+                                    {% assign linkdata = sub_link.title | split: "| " %}
+                                    <a class="megaMenu__navLink" href='{{ sub_link.url }}'>{{ linkdata.first }}</a>
+                                    {% if linkdata[2] != blank %}
+                                        <span class="megaMenu__mostPopular">{{ linkdata[2] }}</span>
+                                    {% endif %}
+                                    {% if linkdata[1] != blank %}
+                                        <p class="megaMenu__navText">{{ linkdata[1] }}</p>
+                                    {% endif %}
+                                </li>
+                            {%- endfor -%}
+                         </ul>     
+                    </div>
+                {% endfor %}    
+            </div>
+            
+            <div class="megaMenu__promotion">
+                {% if menu.promotion_image != blank %}
+                    {% render 'render-responsive-image' with imageData: menu.promotion_image, max_width: 300, max_height: 300 %}   
+                {% endif %} 
+                {% if menu.promotion_heading != blank %}
+                    <h6 class="megaMenu__promotionHeading">{{ menu.promotion_heading }}</h6>
+                {% endif %}
+                {% if menu.promotion_text != blank %}
+                    <p class="megaMenu__promotionText">{{ menu.promotion_text }}</p>
+                {% endif %}
+
+                {% if menu.promotion_link_text != blank %}
+                    <a class="megaMenu__promotionUrl" href="{{ menu.promotion_link_url }}"> {{ menu.promotion_link_text }}</a>
+                {% endif %}
+
+            </div>    
+        </div>    
+    </div>
+</div>

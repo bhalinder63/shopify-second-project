@@ -1,0 +1,64 @@
+<section class="collection-card  {% if section.settings.alt_bg -%}collection-card--alternate-background{%- endif %}">
+  <div class="collection-card__container">
+    <div class="collection-card__header">
+      <h3>{{ section.settings.collection.title }}</h3>
+      {% if section.settings.view_all %}
+        <a href="{{ section.settings.collection.url }}" class="collection-card__view-all">View all</a>
+      {% else %}
+        <div></div>
+      {% endif %}
+    </div>
+    <div class="swiper-container js-collection-card collection-card__swiper">
+      <div class="swiper-wrapper">
+        {% for product in section.settings.collection.products limit: 4 %}
+          {% if product %}
+            <div class="swiper-slide collection-card__slide">
+              <a href="{{ product.url }}" class="collection-card__image">
+                {% if product.featured_image != blank %}
+                  {% render 'render-responsive-image' with imageData: product.featured_image %}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </a>
+              <h4 class="collection-card__product-title p-md">{{ product.title }}</h4>
+              <p class="collection-card__product-price p-xs">
+                {{ product.price | money }}
+                <span class="collection-card__compare-at-price">{{ product.compare_at_price | money }}</span>
+              </p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="swiper-scrollbar collection-card__scrollbar"></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Card",
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Collection Card"
+    }
+  ],
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "view_all",
+      "label": "View All"
+    },
+    {
+      "type": "checkbox",
+      "id": "alt_bg",
+      "label": "Alternate Background"
+    }
+  ]
+}
+{% endschema %}

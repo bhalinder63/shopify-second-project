@@ -1,0 +1,24 @@
+{
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "bracketSpacing": true,
+  "overrides": [
+    {
+      "files": "*.liquid",
+      "options": {
+        "htmlWhitespaceSensitivity": "ignore",
+        "singleQuote": false,
+        "printWidth": 120,
+        "singleAttributePerLine": false
+      }
+    },
+    {
+      "files": "*{.js|.ts}",
+      "options": {
+        "printWidth": 80
+      }
+    }
+  ]
+}

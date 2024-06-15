@@ -1,0 +1,18 @@
+{% comment %} Inputs: icon, title, content {% endcomment %}
+<div x-data="{ open: false }" class="product-details__accordion">
+  <button @click="open = !open" class="product-details__accordion-button">
+    <span>{% render 'icons', icon: icon %}</span>
+    <span class="product-details__accordion-button-text p-md">{{ title }}</span>
+    <span x-show="!open" class="product-details__accordion-button-icon">
+      {% render 'icons', icon: 'bold-plus' %}
+    </span>
+    <span x-show="open" class="product-details__accordion-button-icon">
+      {% render 'icons', icon: 'bold-minus' %}
+    </span>
+  </button>
+  <div x-show="open" class="product-details__accordion-content">
+    <p class="some-class">
+      {{ content }}
+    </p>
+  </div>
+</div>

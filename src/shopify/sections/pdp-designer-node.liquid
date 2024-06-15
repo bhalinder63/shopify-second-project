@@ -1,0 +1,40 @@
+<div class="quote__image">
+  {% if section.settings.image != blank %}
+    {% render 'render-responsive-image' with imageData: section.settings.image %}
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endif %}
+</div>
+<p class="quote__subtitle p-xs">{{ section.settings.subtitle }}</p>
+<blockquote class="quote__text h2">{{ section.settings.quote }}</blockquote>
+
+{% schema %}
+{
+  "name": "PDP - Designer Node",
+  "tag": "section",
+  "class": "quote",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Quote Signature"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "richtext",
+      "id": "quote",
+      "label": "Quote Text"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "PDP - Designer Node"
+    }
+  ]
+}
+{% endschema %}
